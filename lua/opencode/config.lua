@@ -148,6 +148,8 @@ local defaults = {
       },
     },
     kitty = {
+      -- Copy the editor's environment so `opencode` has access to e.g. Mason-installed binaries
+      cmd = "--copy-env opencode --port",
       location = "default",
     },
     -- These are wezterm's internal defaults

@@ -9,8 +9,9 @@
 ---@field name? string
 ---
 ---The command to start `opencode`.
----Note the `--port` flag _must_ be present to expose the server for `opencode.nvim` to connect to.
----`opencode.nvim` will set `--port <port>` specifically to `opts.port` if present.
+---The `--port` flag _must_ be present to expose the server for `opencode.nvim` to connect to.
+---`opencode.nvim` will set `--port <opts.port>` if present.
+---See all available flags [here](https://opencode.ai/docs/cli/#flags).
 ---@field cmd? string
 ---
 ---@field new? fun(opts: table): opencode.Provider
@@ -30,7 +31,7 @@
 ---
 ---Health check for the provider.
 ---Should return `true` if the provider is available,
----else an error string and optional advice (for `vim.health.warn`).
+---else a reason string and optional advice (for `vim.health.warn`).
 ---@field health? fun(): boolean|string, ...string|string[]
 
 ---Configure and enable built-in providers.

@@ -38,17 +38,16 @@ local function get_processes_unix()
   assert(vim.fn.executable("lsof") == 1, "`lsof` executable not found")
 
   -- Find PIDs by command line pattern (handles process names like 'bun', 'node', etc. starting `opencode`).
-  -- We filter for `--port` to avoid matching other opencode-related processes,
-  -- and find only servers.
+  -- We filter for `--port` to avoid matching other `opencode`-related processes (LSPs etc.) and find only servers.
   -- While the later CWD check will filter those out too, this is much faster.
-  local pgrep_output = exec("pgrep -lfa 'opencode' | grep '[-]-port' 2>/dev/null || true")
+  local pgrep_output = exec("pgrep -f 'opencode.*--port' 2>/dev/null || true")
   if pgrep_output == "" then
     return {}
   end
 
   local processes = {}
-  for pid_str in pgrep_output:gmatch("[^\r\n]+") do
-    local pid = tonumber(vim.split(pid_str, "%s+")[1])
+  for pgrep_line in pgrep_output:gmatch("[^\r\n]+") do
+    local pid = tonumber(pgrep_line)
     if pid then
       local lsof_output = exec("lsof -w -iTCP -sTCP:LISTEN -P -n -a -p " .. pid .. " 2>/dev/null || true")
 

@@ -5,13 +5,14 @@ Thank you for wanting to contribute!
 ## Guidelines
 
 - **Align with project vision**
-  - _Integrate_ Neovim with `opencode`'s TUI — not _re-implement_ the TUI in Neovim.
+  - Integrate Neovim with `opencode`'s TUI to enable novel functionality and convenience.
   - Simple, intuitive UX.
   - If unsure, propose changes in an issue or discussion first.
 - **Add more value than maintenance burden**
   - Prefer simple, robust solutions.
   - Consider edge cases and existing project patterns.
   - Functionality should be widely useful.
+  - Heavily weighed when re-implementing TUI features in the plugin.
 - **High-quality Pull Requests**
   - Fill out the PR template.
   - Review any AI-generated code yourself.

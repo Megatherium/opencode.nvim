@@ -114,6 +114,9 @@ end
 ---@type vim.lsp.Config
 return {
   name = "opencode",
+  -- Note the filetype has no effect because `snacks.input` buftype is `prompt`.
+  -- https://github.com/neovim/neovim/issues/36775
+  -- So we manually start the LSP in a callback.
   filetypes = { "opencode_ask" },
   cmd = function(dispatchers, config)
     return {

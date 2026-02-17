@@ -28,17 +28,6 @@ function M.ask(default, context)
           local rendered = context:render(text, server.subagents)
           return context.input_highlight(rendered.input)
         end,
-        completion = "customlist,v:lua.opencode_completion",
-        -- `snacks.input`-only options
-        win = {
-          b = {
-            completion = true,
-          },
-          bo = {
-            -- Custom filetype to enable in-process LSP on
-            filetype = "opencode_ask",
-          },
-        },
       }
       -- Nest `snacks.input` options under `opts.ask.snacks` for consistency with other `snacks`-exclusive config,
       -- and to keep its fields optional. Double-merge is kinda ugly but seems like the lesser evil.

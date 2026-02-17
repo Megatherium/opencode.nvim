@@ -71,6 +71,7 @@ local defaults = {
   },
   ask = {
     prompt = "Ask opencode: ",
+    completion = "customlist,v:lua.opencode_completion",
     snacks = {
       icon = "󰚩 ",
       win = {
@@ -95,6 +96,19 @@ local defaults = {
           },
         },
         footer_keys = { "<CR>", "<S-CR>" },
+        b = {
+          completion = true,
+        },
+        bo = {
+          filetype = "opencode_ask",
+        },
+        on_buf = function(win)
+          -- Make sure your completion plugin has the LSP source enabled,
+          -- either by default or for the `opencode_ask` filetype!
+          vim.lsp.start(require("lsp.opencode"), {
+            bufnr = win.buf,
+          })
+        end,
       },
     },
   },

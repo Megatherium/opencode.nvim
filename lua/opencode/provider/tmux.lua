@@ -106,7 +106,7 @@ function Tmux:start()
   end
 end
 
----Kill the `opencode` pane and its process.
+---Kill the `opencode` pane.
 function Tmux:stop()
   local pane_id = self:get_pane_id()
   if pane_id then

@@ -110,11 +110,8 @@ end
 function Tmux:stop()
   local pane_id = self:get_pane_id()
   if pane_id then
-    local pid = vim.trim(vim.fn.system("tmux display-message -t " .. pane_id .. " -p '#{pane_pid}'"))
-    vim.fn.system("tmux kill-pane -t " .. pane_id)
-    if pid ~= "" and tonumber(pid) then
-      vim.fn.system({ "kill", pid })
-    end
+    -- HACK: https://github.com/nickjvandyke/opencode.nvim/issues/118
+    vim.fn.system("tmux send-keys -t " .. pane_id .. " C-c")
     self.pane_id = nil
   end
 end
